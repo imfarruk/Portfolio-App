@@ -1,0 +1,44 @@
+import {useTheme,createTheme} from '@mui/material/styles';
+import { deepOrange,green } from "@mui/material/colors";
+
+
+
+ const getDesignTokens =(mode)=>({
+    palette: {
+        mode: darkMode ? "dark" : "light",
+        primary: {
+          main: "#1e464a",
+        },
+        secondary: {
+          main: "#494c7d",
+        },
+        background: {
+          default: darkMode ? '#121212' : '#bed390', // Custom background color for dark mode
+        },
+        color:{
+          default: darkMode ? '#ffffff' : "#1e464a"
+        },
+        typography:{
+          color:darkMode ? '#ffffff' : "#1e464a"
+        },
+        button:{
+          color:darkMode ? '#ffffff' : '#ffffff',
+          bg:darkMode ? '#121212' : '#1e464a'
+        },
+        card:{
+          default: !darkMode && "#e6eeef"
+        },
+        typewriter:{
+          default: !darkMode ? deepOrange[900] : green[400]
+        }
+        
+      },
+    });
+
+   export const darkModeTheme1 = createTheme(getDesignTokens("dark"));
+
+
+   export const themeChange = (e) => {
+    setDarkMode(!darkMode);
+    // localStorage.setItem("dark", darkMode ? "light" : "dark");
+  };
