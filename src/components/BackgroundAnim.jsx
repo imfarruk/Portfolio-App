@@ -1,28 +1,60 @@
 import React,{ useCallback, useEffect, useState } from 'react'
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
+import{useTheme} from '@mui/material/styles';
 
 const BackgroundAnim = () => {
+    const theme = useTheme();
     const [ init, setInit ] = useState(false);
     useEffect(() => {
         initParticlesEngine(async (engine) => {
-            // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-            // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-            // starting from v2 you can add only the features you need reducing the bundle size
-            //await loadAll(engine);
-            //await loadFull(engine);
             await loadSlim(engine);
-            //await loadBasic(engine);
         }).then(() => {
             setInit(true);
         });
     }, []);
 
+    const optionn = {
+        particles: {
+          number: {
+            value: 50, // Number of particles
+          },
+          color: {
+            value: '#1212121', // Particle color (white)
+          },
+          shape: {
+            type: 'circle', // Shape of particles (circle)
+          },
+          opacity: {
+            value: 0.5, // Opacity of particles
+          },
+          size: {
+            value: 4, // Size of particles
+            random: true, // Randomize particle size
+          },
+          lineLinked: {
+            enable: true, // Connect particles with lines
+            distance: 150, // Distance threshold for line connections
+            color: '#ffffff', // Line color (white)
+            opacity: 0.4, // Line opacity
+            width: 1, // Line width
+          },
+          move: {
+            enable: true, // Enable particle movement
+            speed: 2, // Speed of particle movement
+            direction: 'none', // Direction of particle movement (none, top, top-right, right, bottom-right, bottom, bottom-left, left, top-left)
+            random: true, // Randomize movement direction
+            straight: false, // Randomize straight line movement
+            outModes: {
+              default: 'out', // Particle out mode (out, bounce)
+            },
+          },
+        },
+    }
   return (
     <>
         { init && <Particles
             id="tsparticles"
-            // particlesLoaded={particlesLoaded}
             options={{
                 fpsLimit: 120,
                 interactivity: {
@@ -43,16 +75,16 @@ const BackgroundAnim = () => {
                         },
                         repulse: {
                             distance: 200,
-                            duration: 0.4,
+                            duration: 0.5,
                         },
                     },
                 },
                 particles: {
                     color: {
-                        value: "#000",
+                        value: theme.palette.animation.color,
                     },
                     links: {
-                        color: "#000",
+                        color: theme.palette.animation.color,
                         distance: 150,
                         enable: true,
                         opacity: 0.5,
@@ -65,7 +97,7 @@ const BackgroundAnim = () => {
                             default: "bounce",
                         },
                         random: false,
-                        speed: 6,
+                        speed: 2,
                         straight: false,
                     },
                     number: {

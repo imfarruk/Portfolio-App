@@ -1,56 +1,25 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import { Paper, Box, Button, TextField } from "@mui/material";
-// import { makeStyles } from "@mui/styles";
+import { Paper, Box, TextField } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import contactPic from "../assets/images/contactus1.png";
-import emailPic from "../assets/images/email.png";
+import {contactInfo} from '../constant/data';
 
-// const styles = makeStyles({
-//   cardBox: {
-//     display: "flex",
-//     // height: "90vh",
-//     paddingBottom: 11,
-//     flexDirection: "row",
-//     justifyContent: "space-evenly",
-//     alignItems: "center",
-//   },
-//   formStyle: {
-//     display: "flex",
-//     flexDirection: "column",
-//   },
-//   inputStyle: {
-//     marginTop: 15,
-//     "&:focus": {
-//       background: "#5d4600",
-//     },
-//   },
-//   formMsg: {
-//     fontSize: 25,
-//     fontWeight: 800,
-//     background: "linear-gradient(0deg, green,orange)",
-//     WebkitBackgroundClip: "text",
-//     WebkitTextFillColor: "transparent",
-//   },
-//   formInput: {
-//     textDecoration: "underline solid  30%",
-//     fontSize: 25,
-//     marginBottom: 2,
-//     background: "linear-gradient(10deg,grey,yellow)",
-//     WebkitBackgroundClip: "text",
-//     WebkitTextFillColor: "transparent",
-//   },
-// });
+//importing images
+import contactPic from "../assets/images/contactus1.png";
+
+//importing css from css folder
+import { InputStyle } from "../css/muiStyle";
+
+//import from utils
+import { location } from '../utils/info';
 
 const Contact = () => {
   const theme = useTheme();
-  //   const classes = styles();
   const form = useRef();
   const navigate = useNavigate();
 
@@ -91,32 +60,28 @@ const Contact = () => {
       >
         <Paper
           sx={{
-            mx: { md: 10, xs: 0 },
-            // my: 5,
+            mx: { md: 10, xs: 2 },
             py: 5,
             px: 2,
             boxShadow: "1px 2px 14px",
             backgroundColor: theme.palette.background.default,
             display: 'flex',
-            justifyContent: 'center'
+            justifyContent: 'center',
           }}
         >
           <Grid
             item
             md={12}
-            xs={10}
+            xs={12}
             container
             spacing={2}
-
             style={{
               display: "flex",
-              //   flexDirection: {xs:"column",sm:"row"},
               justifyContent: "center",
               alignItems: 'center',
-              // gap:"5px"
             }}
           >
-            <Grid item sm={6} md={6} xs={10}
+            <Grid item sm={6} md={6} xs={12}
               sx={{ display: 'flex', justifyContent: { xs: 'center', sm: 'flex-end' } }}
             >
               <Box
@@ -135,7 +100,7 @@ const Contact = () => {
               item
               sm={6}
               md={6}
-              xs={10}
+              xs={12}
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -144,7 +109,7 @@ const Contact = () => {
             >
               <Box sx={{ justifyContent: "center", width: '100%' }}>
                 <Typography
-                  py={2}
+                  py={2} 
                   sx={{
                     fontSize: 25,
                     fontWeight: 900,
@@ -156,33 +121,22 @@ const Contact = () => {
                 >
                   Contact Info
                 </Typography>
-                <Box sx={{ display: 'flex' }}>
-                  <Typography sx={{ width: "25%" }}>
-                    Name :
-                  </Typography>
-                  <Typography>
-                    Md Farhan Haider
-                  </Typography>
-                </Box>
-                <Box sx={{ display: 'flex' }}>
-                  <Typography sx={{ width: "25%" }}>
-                    Email :
-                  </Typography>
-                  <Typography>
-                    imfarruk@gmail.com
-                  </Typography>
-                </Box>
-                <Box sx={{ display: 'flex' }}>
-                  <Typography sx={{ width: "25%" }}>
-                    Mobile No :
-                  </Typography>
-                  <Typography>
-                    8328206725
-                  </Typography>
-                </Box>
-                <Box sx={{ display: 'flex' }}>
-                </Box>
-
+                <Grid container>
+                <Grid item xs={4} spacing={2}>
+                  {
+                     contactInfo.map((val)=>(
+                      <Typography variant="h6" sx={{transform:'capitalize'}}>{val.key} :</Typography>
+                     ))
+                  }
+                </Grid>
+                <Grid item xs={8}>
+                  {
+                    contactInfo.map((val)=>(
+                      <Typography variant="h6" sx={{transform:'capitalize'}}>{val.value}</Typography>
+                    ))
+                  }
+                </Grid>
+                </Grid>
               </Box>
             </Grid>
           </Grid>
@@ -236,7 +190,6 @@ const Contact = () => {
                   name="name"
                   autoComplete="off"
                   required
-                // className={classes.inputStyle}
                 />
 
                 <TextField
@@ -262,7 +215,6 @@ const Contact = () => {
                   minRows={3}
                   sx={{ mt: 2 }}
                   autoComplete="off"
-                // className={classes.inputStyle}
                 />
 
                 <ToastContainer
@@ -277,24 +229,10 @@ const Contact = () => {
                   pauseOnHover={false}
                 />
                 <Box>
-                  <input
+                  <InputStyle
                     type="submit"
                     value="Submit"
-                    style={{
-                      marginTop: '16px',
-                  height: '40px',
-                  width: '200px',
-                  padding: '0 40px',
-                  fontSize: '16px',
-                  border: 'none',
-                  borderRadius: '5px',
-                  outline: '.5px solid grey',
-                  float: 'inline-end',
-                  background: theme.palette.button.bg,
-                  color:theme.palette.button.color,
-                  cursor:'pointer'
-                 }}
-              />
+                  />
                 </Box>
               </form>
             </Box>
@@ -308,7 +246,7 @@ const Contact = () => {
                 height: { xs: '400px', sm: '100%', zIndex: 1 }
               }}>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15229.321251585961!2d78.40448641343872!3d17.39592881222081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb96e9e5058e73%3A0x47d93e7b57ce6f1!2sToli%20Chowki%2C%20Hyderabad%2C%20Telangana%20500008!5e0!3m2!1sen!2sin!4v1714282631759!5m2!1sen!2sin"
+                src={location}
                 width="100%"
                 height="100%"
                 allowFullScreen={true}

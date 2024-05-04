@@ -1,0 +1,4 @@
+
+
+
+export const location = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15229.321251585961!2d78.40448641343872!3d17.39592881222081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb96e9e5058e73%3A0x47d93e7b57ce6f1!2sToli%20Chowki%2C%20Hyderabad%2C%20Telangana%20500008!5e0!3m2!1sen!2sin!4v1714282631759!5m2!1sen!2sin`
